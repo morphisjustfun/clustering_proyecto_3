@@ -1,8 +1,7 @@
 from classes import KMeans, DBSCAN, plot_gmm
 import pandas as pd
-from sklearn.decomposition import PCA, TruncatedSVD
+from sklearn.decomposition import PCA
 import numpy as np
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 
 from sklearn.mixture import GaussianMixture
 from scipy.cluster import hierarchy
@@ -16,6 +15,7 @@ from sklearn.metrics.cluster import adjusted_rand_score
 from sklearn import metrics
 import warnings
 from sklearn.exceptions import DataConversionWarning
+
 warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
 
@@ -40,6 +40,7 @@ def test_models(models, X, y):
     df_result.set_index(df_result['model'], inplace=True)
     df_result.drop('model', axis=1, inplace=True)
     sns.heatmap(df_result, annot=True, cmap="Blues", cbar=False)
+    plt.title("Scores")
     plt.savefig(f"./plots/heatmap_scores.png")
     df_result.to_csv("./results/heatmap_scores.csv")
     plt.clf()
@@ -123,6 +124,7 @@ def test_kmean(x, y):
         print(f"Cluster {i} is {index} - {df.loc[i, index]}")
     print("-------------------------------")
     sns.heatmap(df, annot=True, cmap="Reds", cbar=False)
+    plt.title("KMean results")
     plt.tight_layout()
     plt.savefig("./plots/kmean_heatmap.png")
     plt.clf()
@@ -153,6 +155,7 @@ def test_dbscan(x, y):
         print(f"Cluster {i - 1} is {index} - {df.loc[i, index]}")
     print("-------------------------------")
     sns.heatmap(df, annot=True, cmap="Reds", cbar=False)
+    plt.title("DBSCAN results")
     plt.tight_layout()
     plt.savefig("./plots/dbscan_heatmap.png")
     plt.clf()
@@ -182,6 +185,7 @@ def test_gmm(x, y):
         print(f"Cluster {i} is {index} - {df.loc[i, index]}")
     print("-------------------------------")
     sns.heatmap(df, annot=True, cmap="Reds", cbar=False)
+    plt.title("GMM results")
     plt.tight_layout()
     plt.savefig("./plots/gmm_heatmap.png")
     plt.clf()
@@ -193,6 +197,7 @@ def test_agglomerative_clustering(x):
     plt.figure(figsize=(8, 6))
     hierarchy.dendrogram(clusters, leaf_font_size=0)
     plt.axhline(396, color='crimson')
+    plt.ylabel("Height")
     plt.savefig("./plots/agglomerative_clustering.png")
     plt.clf()
 

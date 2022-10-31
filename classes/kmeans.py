@@ -52,6 +52,9 @@ class KMeans:
             plt.scatter(self.df_training_clustered[self.df_training_clustered['cluster'] == i].iloc[:, 0],
                         self.df_training_clustered[self.df_training_clustered['cluster'] == i].iloc[:, 1], label=int(i))
         plt.legend()
+        plt.title('KMeans')
+        plt.xlabel('x - First Feature')
+        plt.ylabel('y - Second Feature')
 
     def fit_predict(self, data):
         n_cols = data.shape[1]

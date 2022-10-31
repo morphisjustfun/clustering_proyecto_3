@@ -7,3 +7,6 @@ def plot_gmm(x, labels):
     for label in u_label:
         plt.scatter(x[labels == label, 0], x[labels == label, 1], label=label)
     plt.legend()
+    plt.title('GMM')
+    plt.xlabel('x - First Feature')
+    plt.ylabel('y - Second Feature')

@@ -65,3 +65,6 @@ class DBSCAN:
             plt.scatter(self.dataset[flatten_label == label, 0], self.dataset[flatten_label == label, 1],
                         label=int(label) - 1)
         plt.legend()
+        plt.title("DBSCAN")
+        plt.xlabel("x - First feature")
+        plt.ylabel("y - Second feature")
